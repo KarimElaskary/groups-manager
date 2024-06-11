@@ -1,14 +1,21 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import GroupsCreate from './components/GroupsCreate'
 import GroupsList from './components/GroupsList'
 
 const App = () => {
+
+  // main state
+
   const [groups, setGroups] = useState([])
+
+  // create function
 
   const createGroup = (name, description) => {
     const updatedGroups = [...groups, { id: Date.now(), name, description }]
     setGroups(updatedGroups)
   }
+
+  // delete function
 
   const deleteGroup = (id) => {
     const updatedGroups = groups.filter((group) => {
@@ -17,20 +24,24 @@ const App = () => {
     setGroups(updatedGroups)
   }
 
+  // edit function
+
   const editGroup = (id, newName, newDescription) => {
     const updatedGroups = groups.map((group) => {
-      if (group.id === id) {
-        return { ...group, name: newName, description: newDescription }
+      if(group.id === id){
+        return {...group, name: newName, description: newDescription}
       }
-      return group
-    })
-    setGroups(updatedGroups)
+    return group
+    }
+  )
+  setGroups(updatedGroups)
   }
 
   return (
     <>
+      {/* main screen components */}
       <GroupsCreate onCreate={createGroup} />
-      <GroupsList groups={groups} onDelete={deleteGroup} onEdit={editGroup} />
+      <GroupsList groups={groups} onDelete={deleteGroup} onEdit={editGroup}/>
     </>
   )
 }
