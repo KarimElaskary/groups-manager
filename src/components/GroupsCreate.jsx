@@ -6,10 +6,17 @@ const GroupsCreate = ({ onCreate }) => {
 
   const formSubmit = (event) => {
     event.preventDefault()
-    onCreate(name, description)
+    onCreate(name, description, year, month, day, hour, minute)
     setName('')
     setDescription('')
   }
+
+  const currentDate = new Date()
+  let year = currentDate.getFullYear()
+  let month = currentDate.getMonth() + 1
+  let day = currentDate.getDate()
+  let hour = currentDate.getHours()
+  let minute = currentDate.getMinutes()
 
   const nameInputChange = (event) => {
     setName(event.target.value)

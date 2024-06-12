@@ -16,14 +16,6 @@ const GroupShow = ({ group, onDelete, onEdit }) => {
     setIsEditing(false)
   }
 
-  const currentDate = new Date()
-  let year = currentDate.getFullYear()
-  let month = currentDate.getMonth() + 1
-  let day = currentDate.getDate()
-  let hour = currentDate.getHours();
-  let minute = currentDate.getMinutes();
-  let creationTime = <p>{day}/{month}/{year} {hour}:{minute}</p>
-
 
   return (
     <div className='group-info'>
@@ -38,7 +30,7 @@ const GroupShow = ({ group, onDelete, onEdit }) => {
         <div>
           <h1>{group.name}</h1>
           <h3>{group.description}</h3>
-          <h3>Created At {creationTime}</h3>
+          <h3>Created At <p>{group.day}/{group.month}/{group.year} {group.hour}:{group.minute}</p></h3>
           <div className='edit-buttons'>
             <button className='delete-button' onClick={handleClick}>
               Delete
